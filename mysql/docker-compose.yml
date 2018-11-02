@@ -1,0 +1,19 @@
+# 永続化されないデータベース
+# 実験とかで使い捨て用
+
+version: '3'
+
+services:
+    mysql:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: abcd
+            MYSQL_USER: chakku
+            MYSQL_PASSWORD: abcd
+            MYSQL_DATABASE: test
+        ports:
+            - 3306:3306
+
+# 下のコマンドでダンプファイルを復元できる
+# cat <dump file> | docker exec -i mysql_mysql_1 mysql -uchakku -pchakku --default-character-set=binary test
